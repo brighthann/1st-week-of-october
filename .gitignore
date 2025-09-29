@@ -1,0 +1,60 @@
+# DashMonitor .gitignore
+
+# Environment Variables
+.env
+.env.local
+
+# Python
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Byte-compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Python cache
+.pytest_cache/
+*.py[cod]
+
+# Testing & Coverage
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+
+# Test reports
+bandit-report.json
+safety-report.json
+
+
+# IDE
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Operating System
+
+# Windows
+Thumbs.db
+*.stackdump
+
+# macOS
+.DS_Store
+
+# Linux
+*~
+
+# Logs
+*.log
+logs/
+
+# Database
+*.sqlite3
+*.db
+postgres_data/
