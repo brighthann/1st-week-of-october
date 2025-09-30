@@ -3,7 +3,7 @@
 
 #  terminal command for running script:  python create_init.py
 
-#import os
+# import os
 from pathlib import Path
 
 # Directories that need __init__.py files

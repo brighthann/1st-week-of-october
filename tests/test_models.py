@@ -1,5 +1,5 @@
 # Tests for data models
-#import pytest
+# import pytest
 from datetime import datetime
 from src.models.status_models import (
     EndpointStatus,
@@ -18,7 +18,7 @@ def test_health_status_enum():
 
 
 def test_endpoint_config_model():
-    #"""Test EndpointConfig model."""
+    # """Test EndpointConfig model."""
     config = EndpointConfig(
         name="Test API", url="https://api.example.com", expected_status=200, timeout=10
     )
