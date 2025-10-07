@@ -1,0 +1,66 @@
+groups:
+  - name: endpoint_alerts
+    interval: 30s
+    rules:
+      # Alert when endpoint is down
+      - alert: EndpointDown
+        expr: endpoint_status == 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Endpoint {{ $labels.name }} is down"
+          description: "{{ $labels.name }} at {{ $labels.url }} has been down for more than 2 minutes"
+
+      # Alert when response time is too high
+      - alert: HighResponseTime
+        expr: endpoint_response_time_ms > 2000
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High response time for {{ $labels.name }}"
+          description: "{{ $labels.name }} response time is {{ $value }}ms (threshold: 2000ms)"
+
+      # Alert when uptime is low
+      - alert: LowUptime
+        expr: endpoint_uptime_percentage < 95
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Low uptime for {{ $labels.name }}"
+          description: "{{ $labels.name }} uptime is {{ $value }}% (threshold: 95%)"
+
+      # Alert when API is not responding
+      - alert: APIDown
+        expr: up{job="dashmonitor-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "DashMonitor API is down"
+          description: "The monitoring API has been unreachable for more than 1 minute"
+
+  - name: performance_alerts
+    interval: 1m
+    rules:
+      # Alert on high request rate
+      - alert: HighRequestRate
+        expr: rate(api_requests_total[5m]) > 100
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High API request rate"
+          description: "API receiving {{ $value }} requests/second"
+
+      # Alert on slow API response
+      - alert: SlowAPIResponse
+        expr: api_response_time_seconds > 1
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "API response time is slow"
+          description: "API response time is {{ $value }}s"
