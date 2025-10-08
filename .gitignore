@@ -3,12 +3,16 @@
 # Environment Variables
 .env
 .env.local
+.env.production
+.env.development
+.env.test
 
 # Python
 # Virtual environment
 venv/
 env/
 ENV/
+.venv/
 
 # Byte-compiled files
 __pycache__/
@@ -30,7 +34,6 @@ htmlcov/
 bandit-report.json
 safety-report.json
 
-
 # IDE
 # VS Code
 .vscode/
@@ -39,7 +42,6 @@ safety-report.json
 .idea/
 
 # Operating System
-
 # Windows
 Thumbs.db
 *.stackdump
@@ -58,3 +60,42 @@ logs/
 *.sqlite3
 *.db
 postgres_data/
+
+# Docker Data
+prometheus_data/
+docker-compose.override.yml
+
+# Prometheus
+*.wal
+
+# Application Data
+data/
+tmp/
+temp/
+cache/
+.cache/
+uploads/
+
+# Build Artifacts
+build/
+dist/
+*.egg-info/
+
+# Secrets & Certificates
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+ssl/
+certs/
+secrets/
+
+# Development
+.ipynb_checkpoints/
+local_settings.py
+*local.py
+
+# SQLAlchemy
+alembic/versions/*.pyc
