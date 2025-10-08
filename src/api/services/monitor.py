@@ -10,7 +10,8 @@ from urllib.parse import urlparse
 import aiohttp
 
 from src.config.settings import MONITORED_ENDPOINTS
-from src.models.status_models import EndpointStatus, HealthStatus  # EndpointConfig
+from src.models.status_models import EndpointStatus  # EndpointConfig
+from src.models.status_models import HealthStatus
 
 logger = logging.getLogger(__name__)
 
