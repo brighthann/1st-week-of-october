@@ -126,9 +126,15 @@ jobs:
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          registry: ${{ env.DOCKER_REGISTRY }}
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Extract metadata for API
         id: meta-api
@@ -146,7 +152,12 @@ jobs:
           context: .
           file: ./docker/api/Dockerfile
           push: true
-          tags: ${{ steps.meta-api.outputs.tags }}
+          tags:  |
+            ghcr.io/${{ github.repository }}-api:latest
+            ghcr.io/${{ github.repository }}-api:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/dashmonitor-api:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/dashmonitor-api:${{ github.sha }}
+            ${{ steps.meta-api.outputs.tags }}
           labels: ${{ steps.meta-api.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -167,7 +178,12 @@ jobs:
           context: .
           file: ./docker/dashboard/Dockerfile
           push: true
-          tags: ${{ steps.meta-dashboard.outputs.tags }}
+          tags: |
+            ghcr.io/${{ github.repository }}-dashboard:latest
+            ghcr.io/${{ github.repository }}-dashboard:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/dashmonitor-dashboard:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/dashmonitor-dashboard:${{ github.sha }}
+            ${{ steps.meta-dashboard.outputs.tags }}
           labels: ${{ steps.meta-dashboard.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
