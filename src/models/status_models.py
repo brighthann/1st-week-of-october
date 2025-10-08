@@ -1,8 +1,9 @@
 # """Data models for API status and metrics."""
 from datetime import datetime
-from typing import Optional, List
-from pydantic import BaseModel, HttpUrl
 from enum import Enum
+from typing import List, Optional
+
+from pydantic import BaseModel, HttpUrl
 
 
 class HealthStatus(str, Enum):

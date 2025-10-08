@@ -1,10 +1,12 @@
 # Status and monitoring endpoints
 from typing import List
+
 from fastapi import APIRouter, HTTPException  # , BackgroundTasks
-from src.models.status_models import EndpointStatus, MetricsResponse
-from src.api.services.monitor import monitor
-from src.api.services.alert import alert_service
+
 from src.api.endpoints.metrics import update_endpoint_metrics
+from src.api.services.alert import alert_service
+from src.api.services.monitor import monitor
+from src.models.status_models import EndpointStatus, MetricsResponse
 
 router = APIRouter(prefix="/api", tags=["monitoring"])
 

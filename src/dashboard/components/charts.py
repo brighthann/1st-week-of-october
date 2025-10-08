@@ -1,9 +1,11 @@
 # Dashboard chart components
-import plotly.graph_objects as go
-import plotly.express as px
+# from datetime import datetime, timedelta
+from typing import Any, Dict, List
+
 import pandas as pd
-from datetime import datetime, timedelta
-from typing import List, Dict, Any
+
+# import plotly.express as px
+import plotly.graph_objects as go
 
 
 def create_response_time_chart(statuses: List[Dict[str, Any]]) -> go.Figure:

@@ -1,15 +1,16 @@
 # """API monitoring service for health checks."""
 import asyncio
-import aiohttp
-import ssl
-import socket
-from datetime import datetime, timedelta
-from typing import List, Dict, Any, Optional
-from urllib.parse import urlparse
 import logging
+import socket
+import ssl
+from datetime import datetime, timedelta
+from typing import Any, Dict, List, Optional
+from urllib.parse import urlparse
 
-from src.models.status_models import EndpointStatus, HealthStatus, EndpointConfig
+import aiohttp
+
 from src.config.settings import MONITORED_ENDPOINTS
+from src.models.status_models import EndpointStatus, HealthStatus  # EndpointConfig
 
 logger = logging.getLogger(__name__)
 

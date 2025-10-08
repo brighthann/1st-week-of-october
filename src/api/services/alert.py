@@ -1,12 +1,13 @@
 # """Alerting service for API monitoring."""
-import aiohttp
-
 # import json
 import logging
 from datetime import datetime, timedelta
-from typing import List, Dict, Any
-from src.models.status_models import EndpointStatus, HealthStatus
+from typing import Any, Dict, List
+
+import aiohttp
+
 from src.config.settings import settings
+from src.models.status_models import EndpointStatus, HealthStatus
 
 logger = logging.getLogger(__name__)
 

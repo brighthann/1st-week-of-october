@@ -1,8 +1,10 @@
 # "Health check endpoints."""
 from datetime import datetime
+
 from fastapi import APIRouter, HTTPException
-from src.models.status_models import HealthCheckResponse
+
 from src.api.services.monitor import monitor
+from src.models.status_models import HealthCheckResponse
 
 router = APIRouter(prefix="/health", tags=["health"])
 

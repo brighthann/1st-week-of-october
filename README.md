@@ -37,6 +37,7 @@ This project is containerized Python system that monitors multiple API endpoints
 
 //  Project Structure
 
+[![CI/CD Pipeline](https://github.com/brighthann/api-health-dashboard/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/brighthann/api-health-dashboard/actions/workflows/ci-cd.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104.1-green.svg)](https://fastapi.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

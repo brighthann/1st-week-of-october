@@ -1,15 +1,15 @@
 # Streamlit dashboard for API monitoring
-import streamlit as st
-import requests
-import pandas as pd
-import time
 import os
+import time
 from datetime import datetime
 
+import pandas as pd
+import requests
+import streamlit as st
 from components.charts import (
     create_response_time_chart,
-    create_uptime_chart,
     create_status_pie_chart,
+    create_uptime_chart,
 )
 
 # Page configuration

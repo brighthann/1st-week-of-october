@@ -3,12 +3,12 @@
 from fastapi import APIRouter
 from fastapi.responses import Response
 from prometheus_client import (
-    Counter,
-    Histogram,
-    Gauge,
-    generate_latest,
     CONTENT_TYPE_LATEST,
     CollectorRegistry,
+    Counter,
+    Gauge,
+    Histogram,
+    generate_latest,
 )
 
 # Create custom registry to avoid conflicts

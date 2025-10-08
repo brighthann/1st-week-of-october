@@ -1,11 +1,12 @@
 # Tests for data models
 # import pytest
 from datetime import datetime
+
 from src.models.status_models import (
-    EndpointStatus,
-    HealthStatus,
     EndpointConfig,
+    EndpointStatus,
     HealthCheckResponse,
+    HealthStatus,
 )
 
 

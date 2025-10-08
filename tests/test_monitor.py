@@ -1,5 +1,6 @@
 # Tests for monitoring service
 import pytest
+
 from src.api.services.monitor import APIMonitor
 from src.config.settings import MONITORED_ENDPOINTS
 

@@ -1,6 +1,7 @@
-# """Application configuration settings."""
-import os
-from typing import List, Dict, Any
+# Application configuration settings
+# import os
+from typing import Any, Dict, List
+
 from pydantic_settings import BaseSettings
 
 
