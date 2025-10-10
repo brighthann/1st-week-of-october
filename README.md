@@ -9,7 +9,7 @@ This project is containerized Python system that monitors multiple API endpoints
 *Difficulty Level: Beginner-to-Intermediate DevOps Project
 *Core Concept: Build a production-ready API monitoring system with automated alerting and real-time visualization.
 
-/ Current Status: Day 1 Complete 
+/ Current Status: Day 1 Complete
 / Completed Features(spending more time understanding how you want the system to functio, than writing code itself makes the task less complex)
 
 //Features//
