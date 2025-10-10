@@ -50,8 +50,8 @@ MONITORED_ENDPOINTS: List[Dict[str, Any]] = [
         "check_ssl": True,
     },
     {
-        "name": "Weather API",
-        "url": "https://api.weather.gov",
+        "name": "REST",
+        "url": "https://restcountries.com/v3.1/all",
         "expected_status": 200,
         "timeout": 8,
         "check_ssl": True,

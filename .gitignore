@@ -57,6 +57,11 @@ Thumbs.db
 logs/
 
 # Database
+*.sql
+*.dump
+*.backup
+backup.sql
+backups/
 *.sqlite3
 *.db
 postgres_data/
@@ -91,11 +96,16 @@ dist/
 ssl/
 certs/
 secrets/
+ssl/*.pem
+ssl/*.key
+ssl/*.crt
 
 # Development
 .ipynb_checkpoints/
 local_settings.py
 *local.py
+
+config/nginx.local.conf
 
 # SQLAlchemy
 alembic/versions/*.pyc

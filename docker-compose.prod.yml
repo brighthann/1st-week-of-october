@@ -1,25 +1,36 @@
-version: '3.8'
+#version: '3.8'
 
 services:
   db:
     image: postgres:13
     environment:
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB:-monitoring}
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${Postgres-Database_password}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - monitoring-network
     restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-user}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   api:
+    image: ${DOCKER_REGISTRY:-brighthann}/dashmonitor-api:${TAG:-latest}
     build:
       context: .
       dockerfile: docker/api/Dockerfile
     environment:
       - DATABASE_URL=${DATABASE_URL}
+      - API_HOST=0.0.0.0
       - API_DEBUG=false
+      - CHECK_INTERVAL=${CHECK_INTERVAL:-30}
+      - ALERT_THRESHOLD=${ALERT_THRESHOLD:-2}
+      - TIMEOUT_THRESHOLD=${TIMEOUT_THRESHOLD:-5}
       - SLACK_WEBHOOK_URL=${SLACK_WEBHOOK_URL}
     networks:
       - monitoring-network
@@ -28,6 +39,7 @@ services:
     restart: always
 
   dashboard:
+    image: ${DOCKER_REGISTRY:-brighthann}/dashmonitor-dashboard:${TAG:-latest}
     build:
       context: .
       dockerfile: docker/dashboard/Dockerfile
@@ -54,9 +66,26 @@ services:
       - dashboard
     restart: always
 
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./config/alert_rules.yml:/etc/prometheus/alert_rules.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.enable-lifecycle'
+    networks:
+      - monitoring-network
+    depends_on:
+      - api
+    restart: always
+
 networks:
   monitoring-network:
     driver: bridge
 
 volumes:
   postgres_data:
+  prometheus_data:
